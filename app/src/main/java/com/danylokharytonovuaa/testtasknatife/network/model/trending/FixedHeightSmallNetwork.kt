@@ -2,7 +2,7 @@ package com.danylokharytonovuaa.testtasknatife.network.model.trending
 
 import com.google.gson.annotations.SerializedName
 
-data class FixedHeightSmallStillNetwork(
+data class FixedHeightSmallNetwork(
     @SerializedName("url")
     val url: String,
     @SerializedName("height")

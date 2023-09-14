@@ -1,6 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/nav_graph">
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/gifListFragment">
 
+    <fragment
+        android:id="@+id/gifListFragment"
+        android:name="com.danylokharytonovuaa.testtasknatife.presentation.fragments.GifListFragment"
+        android:label="gif_list_layout"
+        tools:layout="@layout/gif_list_layout" >
+        <action
+            android:id="@+id/action_gifListFragment_to_wholeScreenGifFragment"
+            app:destination="@id/wholeScreenGifFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/wholeScreenGifFragment"
+        android:name="com.danylokharytonovuaa.testtasknatife.presentation.fragments.WholeScreenGifFragment"
+        android:label="whole_gif_layout"
+        tools:layout="@layout/whole_gif_layout" />
 </navigation>

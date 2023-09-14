@@ -4,10 +4,12 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.danylokharytonovuaa.testtasknatife.databinding.ErrorLayoutBinding
 import com.danylokharytonovuaa.testtasknatife.databinding.GifListLayoutBinding
+import com.danylokharytonovuaa.testtasknatife.presentation.adapters.GifRecyclerAdapter
 import com.danylokharytonovuaa.testtasknatife.presentation.adapters.base.BaseFragment
 import com.danylokharytonovuaa.testtasknatife.presentation.viewmodels.GifListViewModel
 import dagger.hilt.android.AndroidEntryPoint
@@ -38,29 +40,28 @@ class GifListFragment : BaseFragment() {
 
         }
 
-        val resultBinding = ErrorLayoutBinding.bind(binding?.root!!)
-
+        val resultBinding = ErrorLayoutBinding.bind(binding.root)
+        val layoutManager = LinearLayoutManager(requireContext())
+        binding.gifList.layoutManager = layoutManager
         vm.gifList.observe(viewLifecycleOwner){ result ->
             renderResult(
                 root = binding.root,
                 result = result,
-                onSuccess = {
-                    val adapter = RecyclerCategoriesAdapter(it)
-                    adapter.onItemClick = { category ->
-                        Log.d("Category", category.strCategory)
-                        val action = CategoriesListFragmentDirections
-                            .actionCategorieslListFragmentToMealsByCategoriesFragment()
-                        sharedVM.setCategoryName(category.strCategory)
-                        sharedVM.setCategoryImage(category.strCategoryThumb)
-                        navController.navigate(action)
+                onSuccess = { gifList ->
+                    val adapter = GifRecyclerAdapter(gifList)
+                    adapter.onItemClick = { gif ->
+                        val action = GifListFragmentDirections
+                            .actionGifListFragmentToWholeScreenGifFragment()
+                 //       sharedVM.setCategoryName(category.strCategory)
+               //         sharedVM.setCategoryImage(category.strCategoryThumb)
+                //        navController.navigate(action)
                     }
-                    binding?.categoriesRecyclerView?.adapter = adapter
-                    binding?.appBarLayout?.visibility = View.VISIBLE
-                    binding?.categoriesRecyclerView?.visibility = View.VISIBLE
+                    binding.gifList.adapter = adapter
+                    binding.gifList.visibility = View.VISIBLE
                 },
                 onError = {
-                    resultBinding.buttonErrorRestart.visibility = View.VISIBLE
-                    resultBinding.textError.visibility = View.VISIBLE
+                    resultBinding.errorText.visibility = View.VISIBLE
+                    resultBinding.restartButton.visibility = View.VISIBLE
                 }
             )
         }

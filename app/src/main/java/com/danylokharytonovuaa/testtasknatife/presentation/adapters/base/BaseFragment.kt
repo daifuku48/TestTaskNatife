@@ -17,9 +17,10 @@ typealias MutableLiveResult<T> = MutableLiveData<Result<T>>
 abstract class BaseFragment : Fragment() {
 
     //this method hide all elements and depend on result I can show it
-    fun <T> renderResult(root: ViewGroup, result: Result<T>,
-                         onError: (Exception) -> Unit,
-                         onSuccess: (T) -> Unit) {
+    fun <T> renderResult(
+        root: ViewGroup, result: Result<T>,
+        onError: (Exception) -> Unit,
+        onSuccess: (T) -> Unit) {
 
         root.children.forEach { it.visibility = View.GONE }
         when (result) {

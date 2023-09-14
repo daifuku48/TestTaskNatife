@@ -18,37 +18,26 @@ object ApiModule {
 
     @Provides
     @Singleton
-    fun providesOkHttpLoggingInterceptor(): HttpLoggingInterceptor {
+    fun providesHttpInterceptor() : HttpLoggingInterceptor{
         return HttpLoggingInterceptor()
             .setLevel(HttpLoggingInterceptor.Level.BODY)
     }
 
     @Provides
     @Singleton
-    fun providesOkHttpClient(
-        httpLoggingInterceptor: HttpLoggingInterceptor
-    ) : OkHttpClient{
+    fun providesHttpClient(interceptor: HttpLoggingInterceptor) : OkHttpClient {
         return OkHttpClient.Builder()
-            .addInterceptor(httpLoggingInterceptor)
+            .addInterceptor(interceptor)
             .build()
     }
 
     @Provides
-    fun providesGsonConverterFactory() : GsonConverterFactory {
-        return GsonConverterFactory.create()
-    }
-
-
-    @Provides
     @Singleton
-    fun providesRetrofitGitService(
-        gsonConverterFactory: GsonConverterFactory,
-        okHttpClient: OkHttpClient,
-    ) : Retrofit {
+    fun providesRetrofit(client: OkHttpClient) : Retrofit {
         return Retrofit.Builder()
+            .client(client)
             .baseUrl(RetrofitGifService.BASE_URL)
-            .addConverterFactory(gsonConverterFactory)
-            .client(okHttpClient)
+            .addConverterFactory(GsonConverterFactory.create())
             .build()
     }
 

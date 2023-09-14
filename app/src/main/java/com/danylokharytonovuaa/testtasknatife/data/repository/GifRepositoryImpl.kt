@@ -1,6 +1,5 @@
 package com.danylokharytonovuaa.testtasknatife.data.repository
 
-import android.media.Rating
 import com.danylokharytonovuaa.testtasknatife.domain.model.GifResultDomain
 import com.danylokharytonovuaa.testtasknatife.domain.repository.GifRepository
 import com.danylokharytonovuaa.testtasknatife.network.RetrofitGifService
@@ -16,6 +15,13 @@ class GifRepositoryImpl @Inject constructor(
             apiKey = API_KEY,
             limit = LIMIT,
             rating = RATING
+        ))
+    }
+
+    override suspend fun getGifById(id: String): GifResultDomain {
+        return mapper.networkToDomain(retrofitGifService.getGifById(
+            apiKey = API_KEY,
+            id = id
         ))
     }
 

@@ -2,11 +2,11 @@ package com.danylokharytonovuaa.testtasknatife.network.mappers
 
 import com.danylokharytonovuaa.testtasknatife.domain.Mapper
 import com.danylokharytonovuaa.testtasknatife.domain.model.DataDomain
-import com.danylokharytonovuaa.testtasknatife.domain.model.FixedHeightSmallStillDomain
+import com.danylokharytonovuaa.testtasknatife.domain.model.FixedHeightSmallDomain
 import com.danylokharytonovuaa.testtasknatife.domain.model.GifResultDomain
 import com.danylokharytonovuaa.testtasknatife.domain.model.ImagesDomain
 import com.danylokharytonovuaa.testtasknatife.network.model.trending.DataNetwork
-import com.danylokharytonovuaa.testtasknatife.network.model.trending.FixedHeightSmallStillNetwork
+import com.danylokharytonovuaa.testtasknatife.network.model.trending.FixedHeightSmallNetwork
 import com.danylokharytonovuaa.testtasknatife.network.model.trending.GifResultNetwork
 import com.danylokharytonovuaa.testtasknatife.network.model.trending.ImagesNetwork
 
@@ -15,7 +15,7 @@ class TrendGifMapper : Mapper<GifResultNetwork, GifResultDomain> {
         val dataDomainList = network.data.map { dataNetwork ->
             DataDomain(
                 images = ImagesDomain(
-                    fixedHeightSmallStill = FixedHeightSmallStillDomain(
+                    fixedHeightSmall = FixedHeightSmallDomain(
                         url = dataNetwork.images.fixedHeightSmallStill.url,
                         height = dataNetwork.images.fixedHeightSmallStill.height,
                         width = dataNetwork.images.fixedHeightSmallStill.width
@@ -39,10 +39,10 @@ class TrendGifMapper : Mapper<GifResultNetwork, GifResultDomain> {
         val dataNetworkList = domain.data.map { dataDomain ->
             DataNetwork(
                 images = ImagesNetwork(
-                    fixedHeightSmallStill = FixedHeightSmallStillNetwork(
-                        url = dataDomain.images.fixedHeightSmallStill.url,
-                        height = dataDomain.images.fixedHeightSmallStill.height,
-                        width = dataDomain.images.fixedHeightSmallStill.width
+                    fixedHeightSmallStill = FixedHeightSmallNetwork(
+                        url = dataDomain.images.fixedHeightSmall.url,
+                        height = dataDomain.images.fixedHeightSmall.height,
+                        width = dataDomain.images.fixedHeightSmall.width
                     )
                 ),
                 id = dataDomain.id,
