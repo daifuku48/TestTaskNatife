@@ -2,10 +2,12 @@ package com.danylokharytonovuaa.testtasknatife.network.mappers
 
 import com.danylokharytonovuaa.testtasknatife.domain.Mapper
 import com.danylokharytonovuaa.testtasknatife.domain.model.DataDomain
+import com.danylokharytonovuaa.testtasknatife.domain.model.DownsizedMediumDomain
 import com.danylokharytonovuaa.testtasknatife.domain.model.FixedHeightSmallDomain
 import com.danylokharytonovuaa.testtasknatife.domain.model.GifResultDomain
 import com.danylokharytonovuaa.testtasknatife.domain.model.ImagesDomain
 import com.danylokharytonovuaa.testtasknatife.network.model.trending.DataNetwork
+import com.danylokharytonovuaa.testtasknatife.network.model.trending.DownsizedMediumNetwork
 import com.danylokharytonovuaa.testtasknatife.network.model.trending.FixedHeightSmallNetwork
 import com.danylokharytonovuaa.testtasknatife.network.model.trending.GifResultNetwork
 import com.danylokharytonovuaa.testtasknatife.network.model.trending.ImagesNetwork
@@ -16,9 +18,14 @@ class TrendGifMapper : Mapper<GifResultNetwork, GifResultDomain> {
             DataDomain(
                 images = ImagesDomain(
                     fixedHeightSmall = FixedHeightSmallDomain(
-                        url = dataNetwork.images.fixedHeightSmallStill.url,
-                        height = dataNetwork.images.fixedHeightSmallStill.height,
-                        width = dataNetwork.images.fixedHeightSmallStill.width
+                        url = dataNetwork.images.fixedHeightSmall.url,
+                        height = dataNetwork.images.fixedHeightSmall.height,
+                        width = dataNetwork.images.fixedHeightSmall.width
+                    ),
+                    downsizedMedium = DownsizedMediumDomain(
+                        url = dataNetwork.images.downsizedMedium.url,
+                        height = dataNetwork.images.downsizedMedium.height,
+                        width = dataNetwork.images.downsizedMedium.width
                     )
                 ),
                 id = dataNetwork.id,
@@ -39,10 +46,15 @@ class TrendGifMapper : Mapper<GifResultNetwork, GifResultDomain> {
         val dataNetworkList = domain.data.map { dataDomain ->
             DataNetwork(
                 images = ImagesNetwork(
-                    fixedHeightSmallStill = FixedHeightSmallNetwork(
+                    fixedHeightSmall = FixedHeightSmallNetwork(
                         url = dataDomain.images.fixedHeightSmall.url,
                         height = dataDomain.images.fixedHeightSmall.height,
                         width = dataDomain.images.fixedHeightSmall.width
+                    ),
+                    downsizedMedium = DownsizedMediumNetwork(
+                        url = dataDomain.images.downsizedMedium.url,
+                        height = dataDomain.images.downsizedMedium.height,
+                        width = dataDomain.images.downsizedMedium.width
                     )
                 ),
                 id = dataDomain.id,

@@ -1,5 +1,6 @@
 package com.danylokharytonovuaa.testtasknatife.domain.model
 
 data class ImagesDomain(
-    val fixedHeightSmall: FixedHeightSmallDomain
+    val fixedHeightSmall: FixedHeightSmallDomain,
+    val downsizedMedium: DownsizedMediumDomain
 )

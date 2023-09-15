@@ -4,9 +4,9 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.danylokharytonovuaa.testtasknatife.domain.model.GifDomain
 import com.danylokharytonovuaa.testtasknatife.domain.model.GifResultDomain
-import com.danylokharytonovuaa.testtasknatife.domain.use_cases.GetAllGifTrendsUseCase
-import com.danylokharytonovuaa.testtasknatife.presentation.adapters.base.LiveResult
+import com.danylokharytonovuaa.testtasknatife.domain.use_cases.GetGifByIdUseCase
 import com.danylokharytonovuaa.testtasknatife.presentation.adapters.base.MutableLiveResult
 import com.danylokharytonovuaa.testtasknatife.presentation.utils.ErrorResult
 import com.danylokharytonovuaa.testtasknatife.presentation.utils.SuccessResult
@@ -16,28 +16,29 @@ import kotlinx.coroutines.launch
 import java.net.UnknownHostException
 import javax.inject.Inject
 
-
 @HiltViewModel
-class GifListViewModel @Inject constructor(
-    private val getAllGifTrendsUseCase: GetAllGifTrendsUseCase,
-    private val savedStateHandle: SavedStateHandle
-) : ViewModel(){
-    private var _gifList = MutableLiveResult<GifResultDomain>()
-    var gifList : LiveResult<GifResultDomain> = _gifList
-    var loading = MutableLiveData(false)
-    init {
-        fetchGifList()
+class GifViewModel @Inject constructor(
+    private val savedStateHandle: SavedStateHandle,
+    private val getGifByIdUseCase: GetGifByIdUseCase
+) : ViewModel() {
+
+    private val gifId = MutableLiveData("")
+    val gif = MutableLiveResult<GifDomain>()
+    private val loading = MutableLiveData(false)
+    fun setGifId(id: String){
+        gifId.value = id
+        fetchGif()
     }
 
-    fun fetchGifList(){
+    fun fetchGif(){
         viewModelScope.launch {
-            delay(5000L)
+            delay(3000L)
             try {
-                val domainResult = SuccessResult(getAllGifTrendsUseCase.execute())
-                _gifList.postValue(domainResult)
+                val domainResult = SuccessResult(getGifByIdUseCase.execute(gifId.value!!))
+                gif.postValue(domainResult)
             } catch (e: UnknownHostException){
-                val errorResult = ErrorResult<GifResultDomain>(Exception("IllegalAccessError"))
-                _gifList.postValue(errorResult)
+                val errorResult = ErrorResult<GifDomain>(Exception("IllegalAccessError"))
+                gif.postValue(errorResult)
             }
 
             loading.value = true

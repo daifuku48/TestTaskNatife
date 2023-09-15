@@ -36,11 +36,11 @@ class GifRecyclerAdapter(
     override fun getItemCount() = gifList.data.size
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int){
-        Log.d("gif", gifList.data[position].images.fixedHeightSmall.url)
         Glide.with(holder.gifView.context)
             .asGif()
             .load(gifList.data[position].images.fixedHeightSmall.url)
             .skipMemoryCache(true)
+            .override(holder.gifView.width)
             .into(holder.gifView)
     }
 

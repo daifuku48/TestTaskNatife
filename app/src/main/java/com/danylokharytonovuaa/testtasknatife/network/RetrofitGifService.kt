@@ -1,5 +1,6 @@
 package com.danylokharytonovuaa.testtasknatife.network
 
+import com.danylokharytonovuaa.testtasknatife.network.model.trending.GifNetwork
 import com.danylokharytonovuaa.testtasknatife.network.model.trending.GifResultNetwork
 import retrofit2.http.GET
 import retrofit2.http.Path
@@ -17,7 +18,7 @@ interface RetrofitGifService {
     suspend fun getGifById(
         @Path("gif_id") id: String,
         @Query("api_key") apiKey: String
-    ) : GifResultNetwork
+    ) : GifNetwork
 
     companion object {
         const val BASE_URL = "http://api.giphy.com/"

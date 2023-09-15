@@ -9,14 +9,14 @@
         android:id="@+id/gifListFragment"
         android:name="com.danylokharytonovuaa.testtasknatife.presentation.fragments.GifListFragment"
         android:label="gif_list_layout"
-        tools:layout="@layout/gif_list_layout" >
+        tools:layout="@layout/gif_list_layout">
         <action
-            android:id="@+id/action_gifListFragment_to_wholeScreenGifFragment"
-            app:destination="@id/wholeScreenGifFragment" />
+            android:id="@+id/action_gifListFragment_to_gifFragment2"
+            app:destination="@id/gifFragment2" />
     </fragment>
     <fragment
-        android:id="@+id/wholeScreenGifFragment"
-        android:name="com.danylokharytonovuaa.testtasknatife.presentation.fragments.WholeScreenGifFragment"
-        android:label="whole_gif_layout"
-        tools:layout="@layout/whole_gif_layout" />
+        android:id="@+id/gifFragment2"
+        android:name="com.danylokharytonovuaa.testtasknatife.presentation.fragments.GifFragment"
+        android:label="gif_layout"
+        tools:layout="@layout/gif_layout" />
 </navigation>
