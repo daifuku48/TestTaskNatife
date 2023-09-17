@@ -41,10 +41,14 @@ class GifListFragment : BaseFragment() {
         super.onViewCreated(view, savedInstanceState)
         val resultBinding = ErrorLayoutBinding.bind(binding.root)
         val layoutManager = LinearLayoutManager(requireContext())
+        binding.gifList.layoutManager = layoutManager
+
+        //When an error handle button click
         resultBinding.restartButton.setOnClickListener {
             vm.fetchGifList()
         }
-        binding.gifList.layoutManager = layoutManager
+
+        //Render gif list or error
         vm.gifList.observe(viewLifecycleOwner){ result ->
             renderResult(
                 root = binding.root,

@@ -2,6 +2,8 @@ package com.danylokharytonovuaa.testtasknatife.presentation.utils
 
 typealias ResultMapper<Input, Output> = (Input) -> Output
 
+
+//Class for handling situations in fragments
 sealed class Result<T>{
     fun <R> map(mapper: ResultMapper<T, R>) : Result<R> = when(this) {
         is ErrorResult -> ErrorResult(this.exception)

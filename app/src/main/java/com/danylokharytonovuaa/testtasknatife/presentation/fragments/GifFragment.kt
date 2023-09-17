@@ -43,6 +43,7 @@ class GifFragment : BaseFragment() {
 
         val resultBinding = ErrorLayoutBinding.bind(binding.root)
 
+        //When an error handle button click
         resultBinding.restartButton.setOnClickListener {
             vm.fetchGif()
         }
@@ -51,6 +52,7 @@ class GifFragment : BaseFragment() {
             navController.navigateUp()
         }
 
+        //Render gif or error
         vm.gif.observe(viewLifecycleOwner){result ->
             renderResult(
                 root = binding.root,

@@ -16,12 +16,13 @@ import kotlinx.coroutines.launch
 import java.net.UnknownHostException
 import javax.inject.Inject
 
+//VM for gifFragment
 @HiltViewModel
 class GifViewModel @Inject constructor(
     private val savedStateHandle: SavedStateHandle,
     private val getGifByIdUseCase: GetGifByIdUseCase
 ) : ViewModel() {
-
+    //
     private val gifId = MutableLiveData("")
     val gif = MutableLiveResult<GifDomain>()
     private val loading = MutableLiveData(false)
@@ -32,16 +33,16 @@ class GifViewModel @Inject constructor(
 
     fun fetchGif(){
         viewModelScope.launch {
-            delay(3000L)
+            delay(2000L)
             try {
                 val domainResult = SuccessResult(getGifByIdUseCase.execute(gifId.value!!))
                 gif.postValue(domainResult)
+                loading.value = true
             } catch (e: UnknownHostException){
                 val errorResult = ErrorResult<GifDomain>(Exception("IllegalAccessError"))
                 gif.postValue(errorResult)
+                loading.value = true
             }
-
-            loading.value = true
         }
     }
 }

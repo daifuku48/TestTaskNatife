@@ -10,7 +10,7 @@ import dagger.hilt.components.SingletonComponent
 import org.intellij.lang.annotations.PrintFormat
 import javax.inject.Singleton
 
-
+//Module for use cases
 @Module
 @InstallIn(SingletonComponent::class)
 object DomainModule {

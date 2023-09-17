@@ -12,6 +12,8 @@ import com.danylokharytonovuaa.testtasknatife.network.model.trending.FixedHeight
 import com.danylokharytonovuaa.testtasknatife.network.model.trending.GifResultNetwork
 import com.danylokharytonovuaa.testtasknatife.network.model.trending.ImagesNetwork
 
+
+//Mapper for GifResult list
 class TrendGifMapper : Mapper<GifResultNetwork, GifResultDomain> {
     override fun networkToDomain(network: GifResultNetwork): GifResultDomain {
         val dataDomainList = network.data.map { dataNetwork ->

@@ -11,7 +11,7 @@ import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
 import javax.inject.Singleton
 
-
+//Hilt Module on Singleton for Repository
 @Module
 @InstallIn(SingletonComponent::class)
 object RepositoryModule {

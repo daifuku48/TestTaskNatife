@@ -11,10 +11,13 @@ import com.danylokharytonovuaa.testtasknatife.R
 import com.danylokharytonovuaa.testtasknatife.domain.model.DataDomain
 import com.danylokharytonovuaa.testtasknatife.domain.model.GifResultDomain
 
+
+//Recycler adapter for gif list
 class GifRecyclerAdapter(
     private val gifList: GifResultDomain
 ) : RecyclerView.Adapter<GifRecyclerAdapter.ViewHolder>()  {
 
+    //Click Listener
     var onItemClick: ((DataDomain) -> Unit)? = null
 
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView){

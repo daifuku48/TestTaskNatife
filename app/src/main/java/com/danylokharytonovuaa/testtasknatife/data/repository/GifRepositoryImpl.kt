@@ -8,6 +8,7 @@ import com.danylokharytonovuaa.testtasknatife.network.mappers.GifMapper
 import com.danylokharytonovuaa.testtasknatife.network.mappers.TrendGifMapper
 import javax.inject.Inject
 
+//Implementation Repository
 class GifRepositoryImpl @Inject constructor(
     private val trendsMapper: TrendGifMapper,
     private val gifMapper: GifMapper,
