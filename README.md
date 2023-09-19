@@ -21,4 +21,4 @@ Giphy API: https://developers.giphy.com/
 
 ## Architecture:
 
-![Architecture](https://github.com/daifuku48/TestTaskNatife/blob/master/natife.png)
+![Architecture](https://github.com/daifuku48/TestTaskNatife/blob/master/architecture.png)
