@@ -1,5 +1,8 @@
 # TestTaskNatife
 
+## Time
+6 hours
+
 ## Stack 
 
 - Kotlin
